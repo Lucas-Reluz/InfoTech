@@ -12,7 +12,7 @@ namespace InfoTech.src.modelos
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string Nome { get; set; }
 
         [Required,StringLength(100)]
         public string Email { get; set; }
