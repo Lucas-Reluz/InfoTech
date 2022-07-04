@@ -13,7 +13,7 @@ namespace InfoTech.src.modelos
         [Required, StringLength(100)]
         public string Titulo { get; set; }
 
-        [Required, StringLength(300)]
+        [StringLength(300)]
         public string Descricao { get; set; }
 
         [Required]
