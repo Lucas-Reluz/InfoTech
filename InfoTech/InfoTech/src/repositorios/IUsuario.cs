@@ -12,7 +12,7 @@ namespace InfoTech.src.repositorios
         Task DeletarUsuarioAsync(int id);
 
         Task<UsuarioModelo> PegarUsuarioPeloIdAsync(int id);
-        Task<List<UsuarioModelo>> PegarUsuarioPeloEmailAsync(string Email);
+        Task<List<UsuarioModelo>> PegarUsuarioPeloEmailAsync(string email);
         Task<List<UsuarioModelo>> PegarTodosOsUsuariosAsync();
     }
 }
