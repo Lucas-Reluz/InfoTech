@@ -1,6 +1,8 @@
 using InfoTech.src.data;
 using InfoTech.src.repositorios;
 using InfoTech.src.repositorios.implementacoes;
+using InfoTech.src.servicos;
+using InfoTech.src.servicos.implementacoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +36,8 @@ namespace InfoTech
             services.AddScoped<IUsuario, UsuarioRepositorio>();
             services.AddScoped<IContato, ContatoRepositorio>();
             services.AddScoped<IVideo, VideoRepositorio>();
+
+            services.AddScoped<IAutenticacao, AutenticacaoServicos>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

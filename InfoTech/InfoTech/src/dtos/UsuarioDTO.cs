@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InfoTech.src.tipos;
+using System.ComponentModel.DataAnnotations;
 
 namespace InfoTech.src.dtos
 {
@@ -13,16 +14,18 @@ namespace InfoTech.src.dtos
         [Required, StringLength(40)]
         public string Senha { get; set; }
 
-        [Required]
         public string Endereco { get; set; }
+        [Required]
+        public TipoUsuario Tipo { get; set; }
 
 
-        public NovoUsuarioDTO(string nome, string email, string senha, string endereco)
+        public NovoUsuarioDTO(string nome, string email, string senha, string endereco, TipoUsuario tipo)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
             Endereco = endereco;
+            Tipo = tipo;
         }
     }
     public class AtualizarUsuarioDTO
@@ -36,7 +39,6 @@ namespace InfoTech.src.dtos
         [Required, StringLength(40)]
         public string Senha { get; set; }
 
-        [Required]
         public string Endereco { get; set; }
 
 

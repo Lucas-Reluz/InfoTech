@@ -43,6 +43,7 @@ namespace InfoTech.src.repositorios.implementacoes
                 Email = usuario.Email,
                 Senha = usuario.Senha,
                 Endereco = usuario.Endereco,
+                Tipo = usuario.Tipo,
             });
             await _contexto.SaveChangesAsync();
         }
@@ -52,9 +53,9 @@ namespace InfoTech.src.repositorios.implementacoes
             return await _contexto.Usuarios.ToListAsync();
         }
 
-        public async Task<List<UsuarioModelo>> PegarUsuarioPeloEmailAsync(string email)
+        public async Task<UsuarioModelo> PegarUsuarioPeloEmailAsync(string email)
         {
-            return await _contexto.Usuarios.Where(u => u.Email.Contains(email)).ToListAsync();
+            return await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task<UsuarioModelo> PegarUsuarioPeloIdAsync(int id)

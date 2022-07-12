@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InfoTech.src.tipos;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InfoTech.src.modelos
@@ -14,13 +15,15 @@ namespace InfoTech.src.modelos
         [StringLength(100)]
         public string Nome { get; set; }
 
-        [Required,StringLength(100)]
+        [Required, StringLength(100)]
         public string Email { get; set; }
 
         [Required, StringLength(40)]
         public string Senha { get; set; }
 
-        [Required]
         public string Endereco { get; set; }
+
+        [Required]
+        public TipoUsuario Tipo { get; set; }
     }
 }
