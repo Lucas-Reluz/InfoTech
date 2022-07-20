@@ -49,5 +49,44 @@ namespace InfoTech.src.controladores
                 return Unauthorized(ext.Message);
             }
         }
+
+        [HttpPut]
+        [Authorize(Roles = "COMUM")]
+        public async Task<ActionResult> AtualizarUsuarioAsync([FromBody]AtualizarUsuarioDTO atualizarUsuario)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            atualizarUsuario.Senha = _servicos.CodificarSenha(atualizarUsuario.Senha);
+
+            await _repositorio.AtualizarUsuarioAsync(atualizarUsuario);
+            return Ok();
+        }
+
+        public async Task<ActionResult> DeletarUsuarioAsync([FromRoute] int idUsuario)
+        {
+            await _repositorio.DeletarUsuarioAsync(idUsuario);
+            return NoContent();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "COMUM, ADMIN")]
+        public async Task<ActionResult> PegarUsuarioPeloEmailAsync([FromRoute] string emailUsuario)
+        {
+            var usuario = await _repositorio.PegarUsuarioPeloEmailAsync(emailUsuario);
+
+            if (usuario == null) return NotFound();
+
+            return Ok(usuario);
+        }
+
+        public async Task<ActionResult> PegarTodosOsUsuariosAsync()
+        {
+            var lista = await _repositorio.PegarTodosOsUsuariosAsync();
+
+            if(lista.Count < 1) return NoContent();
+
+            return Ok(lista);
+        }
+
     }
 }
