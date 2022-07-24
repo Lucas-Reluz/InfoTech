@@ -61,14 +61,15 @@ namespace InfoTech.src.controladores
             await _repositorio.AtualizarUsuarioAsync(atualizarUsuario);
             return Ok();
         }
-
+        [HttpDelete]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> DeletarUsuarioAsync([FromRoute] int idUsuario)
         {
             await _repositorio.DeletarUsuarioAsync(idUsuario);
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("email/{emailUsuario}")]
         [Authorize(Roles = "COMUM, ADMIN")]
         public async Task<ActionResult> PegarUsuarioPeloEmailAsync([FromRoute] string emailUsuario)
         {
@@ -79,6 +80,8 @@ namespace InfoTech.src.controladores
             return Ok(usuario);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> PegarTodosOsUsuariosAsync()
         {
             var lista = await _repositorio.PegarTodosOsUsuariosAsync();
